@@ -13,7 +13,8 @@ const Nav: NextPage<Props> = ({ }) => {
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen)
     }
-
+    const linkedInUrl=process.env.NEXT_APP_LINKEDIN_PROFILE
+    const githubUrl=process.env.NEXT_APP_GITHUB_REPO
     return (
         <div>
             <nav className="">
@@ -72,12 +73,12 @@ const Nav: NextPage<Props> = ({ }) => {
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <div className="hidden sm:ml-6 sm:block">
                                 <div className="flex space-x-4">
-                                    <Link href="https://github.com" target="_blank">
+                                    <Link href={`${githubUrl}`} target="_blank">
                                         <p className="flex items-center bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
                                             GitHub <Arrow color={'#ffffff'} />
                                         </p>
                                     </Link>
-                                    <Link href="https://linkedin.com" target="_blank">
+                                    <Link href={`${linkedInUrl}`} target="_blank">
                                         <p className="flex items-center  border-2 border-black text-black px-4 py-2 rounded-md hover:bg-gray-200">
                                              LinkedIn <Arrow color={'#000000'} />
                                         </p>
@@ -93,12 +94,12 @@ const Nav: NextPage<Props> = ({ }) => {
                     <div className="space-y-1 px-2 pt-2 pb-3">
                     <div className="sm:ml-6 sm:block">
                                 <div className="">
-                                <Link href="https://github.com" target="_blank">
+                                <Link href={`${githubUrl}`}target="_blank">
                                         <p className="flex items-center px-4 text-black py-2 rounded-md hover:bg-gray-200">
                                             GitHub <Arrow color={'#000000'} />
                                         </p>
                                     </Link>
-                                    <Link href="https://linkedin.com" target="_blank">
+                                    <Link href={`${linkedInUrl}`}target="_blank">
                                         <p className="flex items-center text-black px-4 py-2 rounded-md hover:bg-gray-200">
                                              LinkedIn <Arrow color={'#000000'} />
                                         </p>
@@ -108,7 +109,6 @@ const Nav: NextPage<Props> = ({ }) => {
                     </div>
                 </div>
             </nav>
-
         </div>
     )
 }

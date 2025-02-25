@@ -7,7 +7,7 @@ const Banner: NextPage<Props> = ({ }) => {
     return <div>
         <div className=" inset-0 mt-8 flex w-full flex-col items-center justify-center p-5 text-center md:px-20 lg:space-y-10">
             <h1 className="text-2xl font-bold tracking-tight text-heading lg:text-4xl xl:text-5xl">Find beautiful & Free images from Unsplash</h1>
-            <p className="text-sm text-heading lg:text-base xl:text-lg">Get your favorite images at any time</p>
+            <p className="text-sm text-heading lg:text-base xl:text-lg my-4">Get your favorite images at any time</p>
             <div className="w-full max-w-3xl">
                 <form className="w-full">
                     <div className="relative flex w-full">
