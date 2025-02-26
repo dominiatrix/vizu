@@ -24,6 +24,13 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  overflow: scroll;
+}
 .masonry-column {
   background-clip: padding-box;
 }

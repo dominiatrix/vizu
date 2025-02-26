@@ -36,9 +36,8 @@ interface UnsplashImage {
   }
   
 
-const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || 'pouletto';
-const apiUrl = process.env.NEXT_PUBLIC_UNSPLASH_BACKEND_URL || 'pouletto';
-console.log('apiUrl', apiUrl, process.env);
+const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+const apiUrl = process.env.NEXT_PUBLIC_UNSPLASH_BACKEND_URL;
 
   export const searchImages = async (query: string, page: number = 1, perPage: number = 10): Promise<any> => {
     try {
@@ -62,10 +61,8 @@ console.log('apiUrl', apiUrl, process.env);
     }
   };
   
-  // Function to get random images
   export const getRandomImages = async (page: number = 1, perPage: number = 10): Promise<any[]> => {
     try {
-      // For random images, we're using the /photos endpoint with ordering
       const response = await fetch(
         `${apiUrl}/photos?page=${page}&per_page=${perPage}&order_by=latest`,
         {

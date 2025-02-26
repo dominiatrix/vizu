@@ -7,8 +7,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useQuery , keepPreviousData} from '@tanstack/react-query';
 import Loader from "@/components/small/loader";
 
-//import Image from "next/image";
-
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
@@ -52,13 +50,15 @@ export default function Home() {
   useEffect(() => {
     refetch();
   }, [page]);
-  console.log('it has more ',hasMore);
+
   const mainContent = ()=>{
     if(isLoading && page === 1){
-    return <div className="w-full mx-auto flex justify-center mt-10 mb-10"><Loader /></div>
+    return <div className="w-full mx-auto flex justify-center my-10"><Loader /></div>
     } else if(error){
-      return <div className="w-full mx-auto flex justify-center mt-10 mb-5 text-red-500">Error loading images. Please try again.</div>
-    } else {
+      return <div className="w-full mx-auto flex justify-center my-10 text-red-500">Error loading images. Please try again.</div>
+    } else if(!isLoading && images.length === 0 && searchQuery){
+      return <div className="w-full mx-auto flex justify-center my-10">No images found for <span className="ml-1 font-bold">{searchQuery}</span>.</div>
+    }else {
       return <Content images={images} hasMore={hasMore} loadMore={loadMore}/>
     }
   }
