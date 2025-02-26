@@ -1,26 +1,44 @@
 "use client";
-import { NextPage } from 'next'
+import Image from "next/image";
+import React, { useState } from 'react';
+
+interface SearchFormProps {
+  onSearch: (query: string) => void;
+}
 
 interface Props { }
 
-const Banner: NextPage<Props> = ({ }) => {
+const Banner: React.FC<SearchFormProps> = ({ onSearch }) => {
+
+    const [query, setQuery] = useState<string>('');
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      onSearch(query);
+    };
+  
     return <div>
+        
         <div className=" inset-0 mt-8 flex w-full flex-col items-center justify-center p-5 text-center md:px-20 lg:space-y-10">
             <h1 className="text-2xl font-bold tracking-tight text-heading lg:text-4xl xl:text-5xl">Find beautiful & Free images from Unsplash</h1>
+            
             <p className="text-sm text-heading lg:text-base xl:text-lg my-4">Get your favorite images at any time</p>
             <div className="w-full max-w-3xl">
-                <form className="w-full">
+                <form className="w-full" onSubmit={handleSubmit}>
                     <div className="relative flex w-full">
                         <label htmlFor="search" className="sr-only">Search</label>
                         <input
                             id="search"
                             type="text"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
                             autoComplete="off"
-                            className="flex-grow h-12 sm:h-14 px-4 sm:px-6 text-sm sm:text-base text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300"
+                            className="flex-grow h-12 sm:h-14 px-4 sm:px-6 text-sm sm:text-base text-gray-700 placeholder-gray-500 bg-white border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-gray-100 "
                             name="search"
                             placeholder="Search your images from here"
                         />
                         <button
+                           type="submit"
                             className="flex items-center justify-center h-12 sm:h-14 px-4 sm:px-6 bg-black text-white font-medium rounded-r-md transition-all duration-200 hover:bg-gray-900 focus:outline-none"
                         >
                             <svg

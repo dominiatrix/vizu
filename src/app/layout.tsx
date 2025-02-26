@@ -3,6 +3,8 @@ import "./globals.css";
 import Image from "next/image";
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
+import Provider from "@/components/Provider";
+
 
 export const metadata: Metadata = {
   title: "JuPlash",
@@ -24,10 +26,12 @@ export default function RootLayout({
       <body
         className={`mulish-font antialiased`}
       >
+        <Provider>
         <Nav />
         {children}
         
        <Footer />
+       </Provider>
       </body>
     </html>
   );

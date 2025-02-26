@@ -13,8 +13,8 @@ const Nav: NextPage<Props> = ({ }) => {
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen)
     }
-    const linkedInUrl=process.env.NEXT_APP_LINKEDIN_PROFILE
-    const githubUrl=process.env.NEXT_APP_GITHUB_REPO
+    const linkedInUrl=process.env.NEXT_PUBLIC_LINKEDIN_PROFILE
+    const githubUrl=process.env.NEXT_PUBLIC_GITHUB_REPO
     return (
         <div>
             <nav className="">
