@@ -6,7 +6,7 @@ import Provider from "@/components/Provider";
 
 
 export const metadata: Metadata = {
-  title: "JuPlash",
+  title: "Vizu",
   description: "A simple unsplash images display app",
 };
 
