@@ -4,6 +4,7 @@ import Masonry from "react-masonry-css";
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { motion } from 'framer-motion';
+import { useTrackDownload } from '@/utils/unsplash';
 
 
 interface ImageProps {
@@ -37,6 +38,7 @@ const breakpointColumnsObj = {
 
 
 const Content: React.FC<ImageGalleryProps> = ({ images, hasMore, loadMore }) => {
+  const { mutate: trackDownload } = useTrackDownload();
 
 return (
 <div>
@@ -72,7 +74,7 @@ return (
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-t-xl"></div>
                 <a
                   className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md cursor-pointer group"
-                  
+                  onClick={()=> trackDownload(img?.links?.download_location)}
                   href={`${img?.links?.download}&force=true`}
                 >
                   <svg

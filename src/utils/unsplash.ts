@@ -1,5 +1,6 @@
 // src/app/api/unsplash.ts
 import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
 
 interface UnsplashImage {
     id: string;
@@ -83,15 +84,19 @@ const apiUrl = process.env.NEXT_PUBLIC_UNSPLASH_BACKEND_URL;
     }
   };
 
-export const fetchPhotos = async (query: string, page: number) => {
-  const endpoint = query
-    ? `${apiUrl}/search/photos?page=${page}&query=${query}&client_id=${accessKey}`
-    : `${apiUrl}/photos?page=${page}&client_id=${accessKey}`;
 
-  const response = await axios.get(endpoint);
-  return response.data.results || response.data;
-};
-
-export const trackDownload = async (downloadLocation: string) => {
-  await axios.get(`${downloadLocation}?client_id=${accessKey}`);
-};
+const trackDownload = async (downloadUrl:string) => {
+    const response = await axios.post(downloadUrl, null, {
+      headers: {
+        Authorization: `Client-ID ${accessKey}`,
+      },
+    });
+    return response.data;
+  };
+  
+  export const useTrackDownload = () => {
+    return useMutation({
+      mutationFn: trackDownload,
+    });
+  };
+  

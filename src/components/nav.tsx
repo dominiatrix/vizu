@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { NextPage } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import Arrow from './small/arrow';
 
