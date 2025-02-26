@@ -57,7 +57,7 @@ return (
         {images.map((img:any, index:number) => (
           <motion.div
           key={'t' + index}
-          className="w-fit h-fit bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl group mb-4"
+          className="w-fit h-fit bg-white shadow-md rounded-xl duration-500 hover:scale-110 hover:rotate-2 hover:shadow-xl group mb-4"
           initial={{ opacity: 0, y: 50 }} 
           animate={{ opacity: 1, y: 0 }}  
           transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -67,8 +67,9 @@ return (
                 <img
                   src={img?.urls?.small}
                   alt={img?.alt_description}
-                  className="object-cover rounded-t-xl w-full"
+                  className="object-cover rounded-t-xl w-full group-hover:opacity-90 group-hover:bg-black"
                 />
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-t-xl"></div>
                 <a
                   className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md cursor-pointer group"
                   
@@ -111,7 +112,7 @@ return (
                   </Link>
                 </span>
               </div>
-              </motion.div>
+          </motion.div>
         ))}
          </Masonry>
       </section>
