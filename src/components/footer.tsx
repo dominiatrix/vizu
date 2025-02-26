@@ -6,7 +6,7 @@ import Link from 'next/link'
 interface Props { }
 
 const Footer: NextPage<Props> = ({ }) => {
-  return <footer>
+  return <footer className='mb-4'>
     <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center mb-4">
       <p>Website built with Next.js and Tailwind.css</p>
     </div>
