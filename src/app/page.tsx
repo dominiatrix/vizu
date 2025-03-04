@@ -3,7 +3,7 @@
 import Banner from "@/components/banner";
 import Content from "@/components/content";
 import { searchImages, getRandomImages } from "@/utils/unsplash";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery , keepPreviousData} from '@tanstack/react-query';
 import Loader from "@/components/small/loader";
 
@@ -12,19 +12,21 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [allImages, setAllImages] = useState<any[]>([]);
 
-  const fetchImages = useCallback(async ({ queryKey }: any) => {
+  const fetchImages = async ({ queryKey }: any) => {
     const [_, query, currentPage] = queryKey;
     if (query) {
       return searchImages(query, currentPage);
     }
     return getRandomImages(currentPage);
-  }, []);
+  };
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, isFetching, error, refetch } = useQuery({
     queryKey: ['images', searchQuery, page],
-    queryFn: () => fetchImages({ queryKey: ['images', searchQuery, page] }),
+    queryFn: fetchImages, // No need to wrap with useCallback, React Query handles memoization
     placeholderData: keepPreviousData,
+    staleTime: 0, // Ensure fresh data is always fetched
   });
+
   
 
   const handleSearch = (query: string) => {
@@ -46,17 +48,18 @@ export default function Home() {
 
   const images = searchQuery ? allImages : data || [];
   const hasMore = data?.total_pages > page ;
+  const loading = isLoading || isFetching;
 
   useEffect(() => {
     refetch();
   }, [page]);
 
   const mainContent = ()=>{
-    if(isLoading && page === 1){
+    if(loading && page === 1){
     return <div className="w-full mx-auto flex justify-center my-10"><Loader /></div>
     } else if(error){
       return <div className="w-full mx-auto flex justify-center my-10 text-red-500">Error loading images. Please try again.</div>
-    } else if(!isLoading && images.length === 0 && searchQuery){
+    } else if(!loading && images.length === 0 && searchQuery){
       return <div className="w-full mx-auto flex justify-center my-10">No images found for <span className="ml-1 font-bold">{searchQuery}</span>.</div>
     }else {
       return <Content images={images} hasMore={hasMore} loadMore={loadMore}/>
