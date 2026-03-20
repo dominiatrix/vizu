@@ -39,6 +39,7 @@ const Banner: React.FC<SearchFormProps> = ({ onSearch }) => {
                         <button
                             type="submit"
                             className="flex items-center justify-center h-12 sm:h-14 px-4 sm:px-6 bg-black text-white font-medium rounded-r-md transition-all duration-200 hover:bg-gray-900 focus:outline-none"
+                            data-umami-event={`Search value ${query}`}
                         >
                             <svg
                                 viewBox="0 0 17.048 18"

@@ -63,8 +63,7 @@ return (
           initial={{ opacity: 0, y: 50 }} 
           animate={{ opacity: 1, y: 0 }}  
           transition={{ duration: 0.5, delay: index * 0.1 }}
-        >
-            
+        >  
             <div className="relative">
                 <img
                   src={img?.urls?.small}
@@ -76,6 +75,7 @@ return (
                   className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md cursor-pointer group"
                   onClick={()=> trackDownload(img?.links?.download_location)}
                   href={`${img?.links?.download}&force=true`}
+                  data-umami-event={`Download image ${img?.alt_description}`}
                 >
                   <svg
                     className="bg-black p-1 text-white rounded-md"
